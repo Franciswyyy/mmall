@@ -12,8 +12,10 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
+    //就更新修改了的属性
     int updateByPrimaryKeySelective(User record);
 
+    //更新所有的属性
     int updateByPrimaryKey(User record);
 
     int checkUsername(String username);
@@ -25,4 +27,11 @@ public interface UserMapper {
     String selectQuestionByUsername(String username);
 
     int checkAnswer(@Param("username")String username,@Param("question")String question,@Param("answer")String answer);
+
+    int updatePasswordByUsername(@Param("username")String username,@Param("passwordNew")String passwordNew);
+
+    int checkPassword(@Param(value="password")String password,@Param("userId")Integer userId);
+
+    int checkEmailByUserId(@Param(value="email")String email,@Param(value="userId")Integer userId);
+
 }
