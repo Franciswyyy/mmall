@@ -9,6 +9,7 @@ import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -27,7 +28,7 @@ public class UserServiceImpl implements IUserService {
 
         String md5Password = MD5Util.MD5EncodeUtf8(password);
 
-        User user = userMapper.selectLogin(username, password);
+        User user = userMapper.selectLogin(username, md5Password);
         if(user == null){
             return ServerResponse.createByErrorMessage("密码错误");
         }
